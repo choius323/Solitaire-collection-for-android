@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!--    <data>-->
+    <!--        <import type="android.view.View"/>-->
+    <!--        <variable-->
+    <!--            name="card"-->
+    <!--            type="com.example.solitairecollection.Card" />-->
+    <!--    </data>-->
+
+
+<!--    <Button-->
+<!--        android:id="@+id/button"-->
+<!--        android:layout_width="247dp"-->
+<!--        android:layout_height="91dp"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:text="@{card.name}"-->
+<!--        tools:layout_editor_absoluteX="93dp"-->
+<!--        tools:layout_editor_absoluteY="229dp" />-->
+
+    <Button
+        android:id="@+id/scorpionButton"
+        android:layout_width="215dp"
+        android:layout_height="61dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="32dp"
+        android:text="@string/classic_Solitaire"
+        app:layout_constraintEnd_toEndOf="@+id/spiderButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/spiderButton"
+        app:layout_constraintTop_toBottomOf="@+id/spiderButton" />
+
+    <Button
+        android:id="@+id/spiderButton"
+        android:layout_width="215dp"
+        android:layout_height="61dp"
+        android:layout_below="@+id/scorpionButton"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="36dp"
+        android:text="@string/spider"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="40dp"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="93dp"-->
+<!--        android:layout_height="125dp"-->
+<!--        android:layout_below="@+id/button"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:scaleType="centerInside"-->
+<!--        android:scaleX="1"-->
+<!--        app:srcCompat="@drawable/clubs_1"-->
+<!--        tools:layout_editor_absoluteX="434dp"-->
+<!--        tools:layout_editor_absoluteY="204dp" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

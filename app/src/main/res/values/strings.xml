@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name" translatable="false">SolitaireCollection</string>
+    <string name="title_activity_scorpion" translatable="false">ScorpionActivity</string>
+    <string name="spider">Spider</string>
+    <string name="classic_Solitaire">Classic Solitaire</string>
+    <!-- Strings used for fragments for navigation -->
+
+<!--    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>-->
+</resources>

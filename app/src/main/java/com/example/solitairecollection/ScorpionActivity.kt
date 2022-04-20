@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
-import androidx.appcompat.app.AppCompatActivity
+import android.view.View
 import com.example.solitairecollection.databinding.ActivityScorpionBinding
 
 class ScorpionActivity : SuperActivity() {
@@ -56,45 +56,64 @@ class ScorpionActivity : SuperActivity() {
 //            false
 //        }
 
+
         var mouseX = 0f  // 뷰와 클릭 위치의 -x 거리
         var mouseY = 0f
-        var areaX = 0f
-        var areaY = 0f
-        binding.view.post {
-            areaX = binding.view.x + binding.view.width / 2
-            areaY = binding.view.y + binding.view.height / 2
-        }
-        binding.imageView2.setOnTouchListener { v, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    mouseX = v.x - event.rawX
-                    mouseY = v.y - event.rawY
-                }
-                MotionEvent.ACTION_MOVE -> {
-                    val nx = event.rawX + mouseX
-                    val ny = event.rawY + mouseY
-                    v.animate()
-                        .x(nx)
-                        .y(ny)
-                        .setDuration(0)
-                        .start()
-                }
-                MotionEvent.ACTION_UP -> {
-                    // 박스 안에 카드를 놓으면 박스 중앙으로 이동
-                    val rangeX = binding.view.width/2
-                    val rangeY = binding.view.height/2
-                    if (v.x + v.width / 2 in areaX - rangeX..areaX + rangeX && v.y + v.height / 2 in areaY - rangeY..areaY + rangeY) {
-                        v.animate()
-                            .x(areaX - v.width / 2)
-                            .y(areaY - v.height / 2)
-                            .setDuration(0)
-                            .start()
+        for (i in 1..1) {
+            val viewId = resources.getIdentifier(
+                "cardPlace$i",
+                "id",
+                this@ScorpionActivity.packageName
+            )
+
+//            액티비티 생성 됐을 때는 위치가 제대로 나오지 않을 수 있어서 post를 사용함
+//            binding.cardPlace1.post {
+//            }
+            binding.imageView2.setOnTouchListener { v, event ->
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        mouseX = v.x - event.rawX
+                        mouseY = v.y - event.rawY
+                    }
+                    MotionEvent.ACTION_MOVE -> {
+                        val nx = event.rawX + mouseX
+                        val ny = event.rawY + mouseY
+//                        v.animate()
+//                            .x(nx)
+//                            .y(ny)
+//                            .setDuration(0)
+//                            .start()
+                        v.moveTo(nx, ny)
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        val view = binding.cardPlace1
+                        val pos = IntArray(2)
+                        view.getLocationOnScreen(pos)
+                        val statusBarHeight = statusBarHeight
+                        pos[1] -= statusBarHeight // 상태바 끝나는 지점 : 75
+                        // 박스 안에 카드를 놓으면 박스 중앙으로 이동
+                        binding.textView3.text = """
+                            pos ${pos[0]} ${pos[1]}
+                            view size ${view.width} ${view.height}
+                            v ${v.x} ${v.y}
+                            v size ${v.width} ${v.height}
+                            if ${v.x.toInt() + v.width / 2 - pos[0]} ${v.y.toInt() + v.height / 2 - pos[1]}
+                            $statusBarHeight
+                        """.trimIndent()
+                        if (v.x.toInt() + v.width / 2 - pos[0] in 0..view.width &&
+                            v.y.toInt() + v.height / 2 - pos[1] in 0..view.height
+                        ) {
+                            v.moveTo(
+                                pos[0].toFloat() + (view.width - v.width)/2,
+                                pos[1].toFloat() + (view.height - v.height)/2
+                            )
+                        }
                     }
                 }
-            }
 
-            true  // false로 하면 setOnClickListener 실행 가능
-            // 추가 설명 -> https://www.masterqna.com/android/2054/ontouch%EC%99%80-onlongclick
+                true  // false로 하면 setOnClickListener 실행 가능
+                // 추가 설명 -> https://www.masterqna.com/android/2054/ontouch%EC%99%80-onlongclick
+            }
         }
 
 
@@ -107,6 +126,14 @@ class ScorpionActivity : SuperActivity() {
         super.onBackPressed()
         startActivity(Intent(this@ScorpionActivity, MainActivity::class.java))
         finish()
+    }
+
+    fun View.moveTo(x: Float, y: Float) {
+        this.animate()
+            .x(x)
+            .y(y)
+            .setDuration(0)
+            .start()
     }
 
 //    class LongClickListener() : View.OnLongClickListener {

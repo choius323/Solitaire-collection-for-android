@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CardPlaceCustom">
+        <attr name="showText" format="boolean"/>
+        <attr name="image" format="reference|integer"/>
+        <attr name="padding" format="integer"/>
+    </declare-styleable>
+</resources>

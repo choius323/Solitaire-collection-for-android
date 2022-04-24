@@ -1,13 +1,14 @@
 package com.example.solitairecollection
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 
+@SuppressLint("Recycle")
 open class CardPlaceCustom @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,

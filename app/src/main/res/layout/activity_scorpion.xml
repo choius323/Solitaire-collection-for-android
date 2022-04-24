@@ -6,16 +6,67 @@
     android:layout_height="match_parent"
     tools:context=".ScorpionActivity">
 
+    <RelativeLayout
+        android:id="@+id/card_place_layout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.example.solitairecollection.CardPlaceCustom
+            android:id="@+id/card_place_complete1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            app:showText="true" />
+
+        <com.example.solitairecollection.CardPlaceCustom
+            android:id="@+id/card_place_complete2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toEndOf="@+id/card_place_complete1"
+            app:showText="true" />
+
+        <com.example.solitairecollection.CardPlaceCustom
+            android:id="@+id/card_place_complete3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toEndOf="@+id/card_place_complete2"
+            app:showText="true" />
+
+        <com.example.solitairecollection.CardPlaceCustom
+            android:id="@+id/card_place_complete4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toEndOf="@+id/card_place_complete3"
+            app:showText="true" />
+    </RelativeLayout>
+
+    <com.example.solitairecollection.CardPlaceCustom
+        android:id="@+id/card_place_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/card_place_layout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/card_place_layout2"
+        app:showText="true" />
 
     <RelativeLayout
-        android:id="@+id/relativeLayout"
+        android:id="@+id/card_place_layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="3dp"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/card_place_layout2">
 
         <com.example.solitairecollection.CardPlaceCustom
             android:id="@+id/card_place1"
@@ -60,38 +111,5 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/card_place6" />
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="496dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="556dp"
-        android:adjustViewBounds="true"
-        android:maxWidth="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/clubs_1" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="496dp"
-        android:text="TextView"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

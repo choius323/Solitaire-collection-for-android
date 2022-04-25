@@ -2,4 +2,9 @@
 <resources>
     <string name="spider">스파이더</string>
     <string name="classic_Solitaire">클래식 솔리테어</string>
+    <string name="cancle">취소</string>
+    <string name="confirm">확인</string>
+    <string name="notify_back">한 번 더 누르면 종료합니다.</string>
+    <string name="reset_title">초기화</string>
+    <string name="reset_message">초기화 하시겠습니까?</string>
 </resources>

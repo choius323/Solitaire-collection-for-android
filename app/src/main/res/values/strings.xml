@@ -1,8 +1,13 @@
 <resources>
-    <string name="app_name" translatable="false">SolitaireCollection</string>
+    <string name="app_name" translatable="false">Solitaire Collection</string>
     <string name="title_activity_scorpion" translatable="false">ScorpionActivity</string>
     <string name="spider">Spider</string>
     <string name="classic_Solitaire">Classic Solitaire</string>
+    <string name="cancle">Cancle</string>
+    <string name="confirm">Confirm</string>
+    <string name="notify_back">" Please press again to exit."</string>
+    <string name="reset_title">Reset</string>
+    <string name="reset_message">Do you want to reset?</string>
     <!-- Strings used for fragments for navigation -->
 
 <!--    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>-->

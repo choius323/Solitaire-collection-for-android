@@ -4,25 +4,22 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.util.TypedValue
-import android.view.MotionEvent
-import android.view.View
 
 @SuppressLint("ViewConstructor")
 class CardView @JvmOverloads constructor(
-    mContext: Context,
+    context: Context,
     number: Int,
     shape: Int,
     attrs: AttributeSet? = null,
     defStyle: Int = 0,
     var isFront: Boolean = true
-) : androidx.appcompat.widget.AppCompatImageView(mContext, attrs, defStyle), View.OnTouchListener {
+) : androidx.appcompat.widget.AppCompatImageView(context, attrs, defStyle) {
 
     val card: Card = Card(number, shape)
     var imageName = "${card.getShapeName()}_${card.number}"
     var image = context.resources.getIdentifier(imageName, "drawable", context.packageName)
-
-    var mouseX = 0f // 클릭 위치
-    var mouseY = 0f
+    var lastX = 0f
+    var lastY = 0f
     var isMoveStart = false
 
     init {
@@ -58,9 +55,5 @@ class CardView @JvmOverloads constructor(
             dp,
             context.resources.displayMetrics
         ).toInt()
-    }
-
-    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-        TODO("Not yet implemented")
     }
 }

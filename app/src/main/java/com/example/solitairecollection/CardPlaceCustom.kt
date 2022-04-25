@@ -9,7 +9,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 
 @SuppressLint("Recycle")
-open class CardPlaceCustom @JvmOverloads constructor(
+class CardPlaceCustom @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0

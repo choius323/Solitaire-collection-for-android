@@ -31,7 +31,7 @@ class CardPlaceCustom @JvmOverloads constructor(
         ).apply {
             try {
                 val typedArray = context.obtainStyledAttributes(attrs, R.styleable.CardPlaceCustom)
-                setTextVisible(typedArray.getBoolean(R.styleable.CardPlaceCustom_showText, false))
+                setTextVisible(typedArray.getBoolean(R.styleable.CardPlaceCustom_showText, true))
                 setImageSrc(
                     typedArray.getResourceId(
                         R.styleable.CardPlaceCustom_image,

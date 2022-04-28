@@ -24,6 +24,18 @@
 <!--        tools:layout_editor_absoluteX="93dp"-->
 <!--        tools:layout_editor_absoluteY="229dp" />-->
 
+    <ImageView
+        android:id="@+id/resetButton2"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
+        android:background="#A57575"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_preferences" />
+
     <Button
         android:id="@+id/scorpionButton"
         android:layout_width="215dp"

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/board_background"
     tools:context=".ScorpionActivity">
+<!--  image source : https://wallpapersafari.com/w/HoBVTE -->
 
     <RelativeLayout
         android:id="@+id/card_place_layout2"
@@ -20,32 +22,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_centerInParent="true"
-            app:showText="true" />
+            android:layout_centerInParent="true"/>
 
         <com.example.solitairecollection.CardPlaceCustom
             android:id="@+id/card_place_complete2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_toEndOf="@+id/card_place_complete1"
-            app:showText="true" />
+            android:layout_toEndOf="@+id/card_place_complete1"/>
 
         <com.example.solitairecollection.CardPlaceCustom
             android:id="@+id/card_place_complete3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_toEndOf="@+id/card_place_complete2"
-            app:showText="true" />
+            android:layout_toEndOf="@+id/card_place_complete2"/>
 
         <com.example.solitairecollection.CardPlaceCustom
             android:id="@+id/card_place_complete4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_toEndOf="@+id/card_place_complete3"
-            app:showText="true" />
+            android:layout_toEndOf="@+id/card_place_complete3"/>
     </RelativeLayout>
 
     <com.example.solitairecollection.CardPlaceCustom
@@ -55,8 +53,7 @@
         android:layout_marginEnd="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/card_place_layout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/card_place_layout2"
-        app:showText="true" />
+        app:layout_constraintTop_toTopOf="@+id/card_place_layout2"/>
 
     <RelativeLayout
         android:id="@+id/card_place_layout1"
@@ -110,19 +107,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/card_place6" />
-
     </RelativeLayout>
 
     <ImageView
         android:id="@+id/resetButton"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
         android:background="#A57575"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/stat_notify_sync" />
+        app:srcCompat="@android:drawable/stat_notify_sync"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

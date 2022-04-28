@@ -12,7 +12,8 @@ class CardView @JvmOverloads constructor(
     shape: Int,
     attrs: AttributeSet? = null,
     defStyle: Int = 0,
-    var isFront: Boolean = true
+    var isFront: Boolean = true,
+    var lastCardPlace:CardPlaceCustom
 ) : androidx.appcompat.widget.AppCompatImageView(context, attrs, defStyle) {
 
     val card: Card = Card(number, shape)

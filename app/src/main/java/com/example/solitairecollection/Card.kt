@@ -7,6 +7,7 @@ data class Card( var number: Int,  var shape: Int, var name:String="NONE") {
         const val DIAMONDS = 2
         const val CLUBS = 3
     }
+
     private val shapeList = arrayOf("spades", "hearts", "diamonds", "clubs")
     private var shapeName = shapeList[shape]
 

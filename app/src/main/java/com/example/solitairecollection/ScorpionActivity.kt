@@ -3,21 +3,21 @@ package com.example.solitairecollection
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
+import androidx.core.view.allViews
 import com.example.solitairecollection.databinding.ActivityScorpionBinding
 import com.google.android.material.snackbar.Snackbar
 
 class ScorpionActivity : SuperActivity() {
 
     private lateinit var binding: ActivityScorpionBinding
-    private val cardPlaceArr = ArrayList<View>()
-    private val cards = ArrayList<CardView>()
+    private val cardPlaceArr = HashMap<CardPlaceCustom, CardPlace>()
+    private val cards = ArrayList<CardView>(12)
     var startPlacePosition = IntArray(2)
     var waitTime = 0L
 
@@ -27,21 +27,55 @@ class ScorpionActivity : SuperActivity() {
         binding = ActivityScorpionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        cardPlaceArr.addAll(
-            listOf(
-                binding.cardPlaceComplete1,
-                binding.cardPlaceComplete2,
-                binding.cardPlaceComplete3,
-                binding.cardPlaceComplete4,
-                binding.cardPlace1,
-                binding.cardPlace2,
-                binding.cardPlace3,
-                binding.cardPlace4,
-                binding.cardPlace5,
-                binding.cardPlace6,
-                binding.cardPlace7
-            )
-        )
+
+        binding.cardPlaceStart.post {
+            val view = binding.cardPlaceStart
+            view.getLocationOnScreen(startPlacePosition)
+            cardPlaceArr += view to CardPlace(ArrayDeque(), 0, view, statusBarHeight)
+            Log.i("startPlacePosition", startPlacePosition.contentToString())
+        }
+
+        for (view in binding.cardPlaceLayout2.allViews) {
+//            val id = resources.getIdentifier("cardPlaceComplete" + (it + 1), "id", packageName)
+//            val view = findViewById<CardPlaceCustom>(id)
+            if (view is CardPlaceCustom) {
+                Log.i("view class", "${view.id} ${view::class.java}")
+                view.post {
+                    cardPlaceArr += view to CardPlace(ArrayDeque(), 0, view, statusBarHeight)
+                    // 상태바 끝나는 지점 : 75}
+                }
+            }
+        }
+
+        for (view in binding.cardPlaceLayout1.allViews) {
+//            val id = resources.getIdentifier("cardPlaceComplete" + (it + 1), "id", packageName)
+//            val view = findViewById<CardPlaceCustom>(id)
+            if (view is CardPlaceCustom) {
+                Log.i("view class", "${view.id} ${view::class.java}")
+                view.post {
+                    cardPlaceArr += view to CardPlace(ArrayDeque(), 1, view, statusBarHeight)
+                    Log.i("cardPlaceArr", "${cardPlaceArr.size} ")
+                    // 상태바 끝나는 지점 : 75}
+                }
+            }
+        }
+        Log.i("cardPlaceArr", "${cardPlaceArr.size} ")
+
+//        cardPlaceArr.addAll(
+//            listOf(
+//                binding.cardPlaceComplete1,
+//                binding.cardPlaceComplete2,
+//                binding.cardPlaceComplete3,
+//                binding.cardPlaceComplete4,
+//                binding.cardPlace1,
+//                binding.cardPlace2,
+//                binding.cardPlace3,
+//                binding.cardPlace4,
+//                binding.cardPlace5,
+//                binding.cardPlace6,
+//                binding.cardPlace7
+//            )
+//        )
 
 //        var card: Card? = Card(5, Card.CLUBS)
 //        if (intent.hasExtra("cardInfo")) {
@@ -59,10 +93,6 @@ class ScorpionActivity : SuperActivity() {
 //            }
 //        }
 
-        binding.cardPlaceStart.post {
-            binding.cardPlaceStart.getLocationOnScreen(startPlacePosition)
-            Log.i("startPlacePosition", startPlacePosition.contentToString())
-        }
 
         binding.resetButton.setOnClickListener {
             val builder = AlertDialog.Builder(this)
@@ -89,7 +119,7 @@ class ScorpionActivity : SuperActivity() {
 //            v?.startDragAndDrop(dragData, View.DragShadowBuilder(v), null, 0)
 //            true
 //        }
-        startGame()
+        binding.cardPlaceStart.post { startGame() }
     }
 
     var mouseX = 0f // 클릭 위치
@@ -142,31 +172,29 @@ class ScorpionActivity : SuperActivity() {
                                 "last : ${cardView.lastX} ${cardView.lastY}"
                             )
                             var isInCardPlace = false
-                            for (view in cardPlaceArr) {
-                                val pos = IntArray(2)
-                                view.getLocationOnScreen(pos)
-                                pos[1] -= statusBarHeight // 상태바 끝나는 지점 : 75
+                            for ((view, obj) in cardPlaceArr) {
                                 // 박스 안에 카드를 놓으면 박스 중앙으로 이동
 
-                                if (v.x.toInt() + v.width / 2 - pos[0] in view.width / range..view.width * 4 / range &&
-                                    v.y.toInt() + v.height / 2 - pos[1] in view.height / range..view.height * 4 / range
+                                Log.i("view Position", "${obj.pos.contentToString()} ")
+                                if ((v.x + v.width / 2 - obj.pos[0]).toInt() in obj.width / range..obj.width * 4 / range &&
+                                    (v.y + v.height / 2 - obj.pos[1]).toInt() in obj.height / range..obj.height * 4 / range
                                 ) {
                                     isInCardPlace = true
                                     v.moveTo(
-                                        pos[0].toFloat() + (view.width - v.width) / 2,
-                                        pos[1].toFloat() + (view.height - v.height) / 2
+                                        obj.pos[0] + (obj.width - v.width) / 2f,
+                                        obj.pos[1] + (obj.height - v.height) / 2f
                                     )
+                                    cardPlaceArr[cardView.lastCardPlace]!!.removeCard()
+                                    obj.addCard(cardView.card)
+                                    cardView.lastCardPlace = view
+                                    break
                                 }
                             }
                             if (!isInCardPlace) {
                                 v.moveTo(cardView.lastX, cardView.lastY)
-                            } else {
-                                true
-                            }
+                            } else true
 
-                        } else {
-                            v.performClick()
-                        }
+                        } else v.performClick()
                     }
                     else -> true
                 }
@@ -209,9 +237,11 @@ class ScorpionActivity : SuperActivity() {
                     applicationContext,
                     (1..13).random(),
                     (0..3).random(),
-                    isFront = false
+                    isFront = false,
+                    lastCardPlace = binding.cardPlaceStart
                 )
             )
+            cardPlaceArr[binding.cardPlaceStart]!!.addCard(cards[i].card)
             cards[i].setOnTouchListener { v, event -> TouchListener(cards[i]).onTouch(v, event) }
             cards[i].setOnClickListener {
                 if (!cards[i].isFront) {

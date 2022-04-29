@@ -18,8 +18,9 @@ class ScorpionActivity : SuperActivity() {
     private lateinit var binding: ActivityScorpionBinding
     private val cardPlaceArr = HashMap<CardPlaceCustom, CardPlace>()
     private val cards = ArrayList<CardView>(12)
-    var startPlacePosition = IntArray(2)
-    var waitTime = 0L
+    private var startPlacePosition = IntArray(2)
+    private var waitTime = 0L
+    private var score = 500
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -105,6 +106,7 @@ class ScorpionActivity : SuperActivity() {
                 .create()
             builder.show()
         }
+        binding.undoButton.setOnClickListener { clickUndo() }
 
 //        binding.imageView2.setOnLongClickListener(LongClickListener())
 //        binding.imageView2.setOnClickListener { v ->
@@ -119,6 +121,7 @@ class ScorpionActivity : SuperActivity() {
 //            v?.startDragAndDrop(dragData, View.DragShadowBuilder(v), null, 0)
 //            true
 //        }
+
         binding.cardPlaceStart.post { startGame() }
     }
 
@@ -184,6 +187,7 @@ class ScorpionActivity : SuperActivity() {
                                         obj.pos[0] + (obj.width - v.width) / 2f,
                                         obj.pos[1] + (obj.height - v.height) / 2f
                                     )
+                                    addScore(10)
                                     cardPlaceArr[cardView.lastCardPlace]!!.removeCard()
                                     obj.addCard(cardView.card)
                                     cardView.lastCardPlace = view
@@ -202,6 +206,11 @@ class ScorpionActivity : SuperActivity() {
             return true  // false로 하면 setOnClickListener 실행 가능
             // 추가 설명 -> https://www.masterqna.com/android/2054/ontouch%EC%99%80-onlongclick
         }
+    }
+
+    private fun addScore(num: Int) {
+        score += num
+        binding.scoreTextView.text = getString(R.string.score, score)
     }
 
     override fun onBackPressed() {
@@ -242,7 +251,9 @@ class ScorpionActivity : SuperActivity() {
                 )
             )
             cardPlaceArr[binding.cardPlaceStart]!!.addCard(cards[i].card)
-            cards[i].setOnTouchListener { v, event -> TouchListener(cards[i]).onTouch(v, event) }
+            cards[i].setOnTouchListener { v, event ->
+                TouchListener(cards[i]).onTouch(v, event)
+            }
             cards[i].setOnClickListener {
                 if (!cards[i].isFront) {
                     cards[i].setIsFront(true)
@@ -260,11 +271,18 @@ class ScorpionActivity : SuperActivity() {
                 )
             }
         }
+
+        score = 500
+        addScore(0)
     }
 
     private fun resetGame() {
         cards.forEach { binding.root.removeView(it) }
         cards.clear()
         startGame()
+    }
+
+    private fun clickUndo() {
+        addScore(-1)
     }
 }

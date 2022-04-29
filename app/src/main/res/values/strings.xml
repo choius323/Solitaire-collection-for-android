@@ -5,9 +5,12 @@
     <string name="classic_Solitaire">Classic Solitaire</string>
     <string name="cancle">Cancle</string>
     <string name="confirm">Confirm</string>
-    <string name="notify_back">" Please press again to exit."</string>
+    <string name="notify_back">Please press again to exit.</string>
     <string name="reset_title">Reset</string>
     <string name="reset_message">Do you want to reset?</string>
+    <string name="undo">UNDO</string>
+    <string name="score">SCORE : %1$d</string>
+    <string name="hint">HINT</string>
     <!-- Strings used for fragments for navigation -->
 
 <!--    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>-->

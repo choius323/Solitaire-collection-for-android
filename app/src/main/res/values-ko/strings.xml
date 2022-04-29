@@ -7,4 +7,7 @@
     <string name="notify_back">한 번 더 누르면 종료합니다.</string>
     <string name="reset_title">초기화</string>
     <string name="reset_message">초기화 하시겠습니까?</string>
+    <string name="undo">되돌리기</string>
+    <string name="score">점수 : %1$d</string>
+    <string name="hint">힌트</string>
 </resources>

@@ -3,7 +3,7 @@
     <string name="title_activity_scorpion" translatable="false">ScorpionActivity</string>
     <string name="spider">Spider</string>
     <string name="classic_Solitaire">Classic Solitaire</string>
-    <string name="cancle">Cancle</string>
+    <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
     <string name="notify_back">Please press again to exit.</string>
     <string name="reset_title">Reset</string>
@@ -11,7 +11,13 @@
     <string name="undo">UNDO</string>
     <string name="score">SCORE : %1$d</string>
     <string name="hint">HINT</string>
+    <string name="score_board">Score Board</string>
+    <string name="large_text" translatable="false">        "Material is the metaphor.\n\n"    </string>
+    <string name="score_board_rank">Rank</string>
+    <string name="score_board_name">Name</string>
+    <string name="score_board_score">score</string>
+    <!--    <string name="action_settings">Settings</string>-->
     <!-- Strings used for fragments for navigation -->
 
-<!--    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>-->
+    <!--    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>-->
 </resources>

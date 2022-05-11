@@ -2,9 +2,7 @@ package com.example.solitairecollection
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import com.example.solitairecollection.databinding.ActivityMainBinding
-import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : SuperActivity() {
 
@@ -43,6 +41,11 @@ class MainActivity : SuperActivity() {
 //            intent.putIntegerArrayListExtra("cardInfo", arrayListOf(card.number, card.shape))
             startActivity(intent)
             finish()
+        }
+
+        binding.scoreBoard.setOnClickListener {
+            val intent = Intent(this, ScoreBoardActivity::class.java)
+            startActivity(intent)
         }
     }
 }

@@ -102,7 +102,7 @@ class ScorpionActivity : SuperActivity() {
                 .setPositiveButton(
                     R.string.confirm
                 ) { _, _ -> resetGame() }
-                .setNegativeButton(R.string.cancle) { _, _ -> }
+                .setNegativeButton(R.string.cancel) { _, _ -> }
                 .create()
             builder.show()
         }
@@ -239,6 +239,7 @@ class ScorpionActivity : SuperActivity() {
         )
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun startGame() {
         for (i in 0..50) {
             cards.add(
